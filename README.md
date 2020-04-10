@@ -9,7 +9,13 @@
 ## Team **[개꿈]**
 ##### [개]발 [꿈]나무
 ### Member [**임기성**]
-> #### Name : [임기성](https://github.com/PIut0/2020oss_repo)
+> #### Name : 임기성 (Lim Kiseong)
+> #### E-mail : slimdoks@gmail.com
+> #### Student-ID : 2019084984
+> #### [Profile Page](https://piut0.github.io/)
 
 ### Member [**하현우**]
-> #### Name : [하현우](https://github.com/high2092/2020oss_repo)
+> #### Name : 하현우 (Ha Hyunwoo)
+> #### E-mail : high2092@gmail.com
+> #### Student-ID : 2019036844
+> #### [Profile Page](https://high2092.github.io/)
