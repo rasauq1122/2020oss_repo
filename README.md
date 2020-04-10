@@ -9,7 +9,7 @@
 ## Team **[개꿈]**
 ##### [개]발 [꿈]나무
 ### Member [**임기성**]
-> #### Name : 임기성
+> #### Name : [임기성](https://github.com/PIut0/2020oss_repo)
 
 ### Member [**하현우**]
-> #### Name : 하현우
+> #### Name : [하현우](https://github.com/high2092/2020oss_repo)
