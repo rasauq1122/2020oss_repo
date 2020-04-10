@@ -1,4 +1,4 @@
-# 2020 OSS-dev 
+# <center>2020 OSS-dev</center>
 ## Profile
 > ### Name : 박준성 (Park Junseong)
 > ### E-mail : rasauq1122@gmail.com
@@ -6,7 +6,7 @@
 > ### [Profile Page](https://rasauq1122.github.io/)        
 <hr/>
 
-## Team - 개꿈
+## Team **[개꿈]**
 ##### [개]발 [꿈]나무
 ### Member [**임기성**]
 > #### Name : 임기성
