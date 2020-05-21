@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,10 +27,43 @@ public class MainActivity extends AppCompatActivity {
     private StringAdapter stringAdapter;
 
     @Override
+    public boolean onCreateOptionsMenu(Menu given_menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, given_menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected (MenuItem item)
+    {
+        Toast toast = Toast.makeText(getApplicationContext(),"", Toast.LENGTH_LONG);
+
+        switch(item.getItemId())
+        {
+            case R.id.refresh:
+                toast.setText("Refreshed!");
+                refresh("1835847");
+                break;
+            case R.id.settings:
+                toast.setText("Setting!");
+                break;
+        }
+
+        toast.show();
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.mContext = getApplicationContext();
+
+
+    }
+
+    private void refresh(String id) {
 
         stringViewer = (ListView) findViewById(R.id.listviewer);
         stringAdapter = new StringAdapter(mContext, stringArrayList);
@@ -37,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
         String content = "";
         FetchWeatherTask weatherTask = new FetchWeatherTask();
         try {
-            String id = "1835847";
             content = weatherTask.execute("http://api.openweathermap.org/data/2.5/forecast/daily?id="+ id +"&mode=json&units=metric&cnt=7&appid=5fd2f2cde90c1533efb95b19c048a528").get();
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -70,5 +104,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-}
+
+    }
+
 }
