@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Context mContext;
     private ListView stringViewer;
-    private ArrayList<String> stringArrayList = new ArrayList<>();
+    private ArrayList<String> stringArrayList;
     private StringAdapter stringAdapter;
 
     @Override
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void refresh(String id) {
-
+        stringArrayList = new ArrayList<>();
         stringViewer = (ListView) findViewById(R.id.listviewer);
         stringAdapter = new StringAdapter(mContext, stringArrayList);
         stringViewer.setAdapter(stringAdapter);
