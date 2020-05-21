@@ -8,7 +8,13 @@ import android.util.Log;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
@@ -25,26 +31,44 @@ public class MainActivity extends AppCompatActivity {
         this.mContext = getApplicationContext();
 
         stringViewer = (ListView) findViewById(R.id.listviewer);
-        stringArrayList.add("안녕하세요.");
-        stringArrayList.add("저는 한양대학교 ERICA 캠퍼스");
-        stringArrayList.add("소프트웨어학부 2019052851");
-        stringArrayList.add("박준성이라고 합니다.");
-        stringArrayList.add("ZOAC 1등!!!!!!!!!!");
-
         stringAdapter = new StringAdapter(mContext, stringArrayList);
         stringViewer.setAdapter(stringAdapter);
 
-        String content;
+        String content = "";
         FetchWeatherTask weatherTask = new FetchWeatherTask();
         try {
             String id = "1835847";
             content = weatherTask.execute("http://api.openweathermap.org/data/2.5/forecast/daily?id="+ id +"&mode=json&units=metric&cnt=7&appid=5fd2f2cde90c1533efb95b19c048a528").get();
-            System.out.println(content);
-            Log.i("content", content);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-    }
+
+        Date today = new Date();
+        System.out.println(today.getTime());
+        JSONObject jsonMain = null;
+        try {
+            jsonMain = new JSONObject(content);
+            JSONArray date = new JSONArray(jsonMain.getString("list"));
+            int len = date.length();
+            for (int i = 0 ; i < len ; i++) {
+                JSONObject temp = date.getJSONObject(i).getJSONObject("temp");
+                JSONArray weather = date.getJSONObject(i).getJSONArray("weather");
+                double min = temp.getDouble("min");
+                double max = temp.getDouble("max");
+                long now_date_int = date.getJSONObject(i).getLong("dt")*1000;
+                String wth = weather.getJSONObject(0).getString("main");
+//                System.out.println(now_date_int);
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd (E)");
+                Date now = new Date(now_date_int);
+//                System.out.println(sdf.format(today));
+//                System.out.println(sdf.format(now));
+                stringArrayList.add(sdf.format(now) + "\n" + wth +" \nlow : " + min + "             high : " + max);
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+}
 }
