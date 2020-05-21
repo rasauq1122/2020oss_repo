@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListPreference
+        android:key="city"
+        android:title="City"
+        android:defaultValue="0"
+        android:entries="@array/city_name"
+        android:entryValues="@array/city_id"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null" />
+</PreferenceScreen>

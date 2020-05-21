@@ -3,6 +3,7 @@ package com.example.weatherapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private ListView stringViewer;
     private ArrayList<String> stringArrayList;
     private StringAdapter stringAdapter;
+    public static final int sub = 1001;
 
     @Override
     public boolean onCreateOptionsMenu(Menu given_menu) {
@@ -45,7 +47,8 @@ public class MainActivity extends AppCompatActivity {
                 refresh("1835847");
                 break;
             case R.id.settings:
-                toast.setText("Setting!");
+                Intent intent = new Intent(getApplicationContext(), SettingActivity.class);
+                startActivityForResult(intent, sub);
                 break;
         }
 
@@ -59,8 +62,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.mContext = getApplicationContext();
-
-
     }
 
     private void refresh(String id) {
