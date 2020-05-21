@@ -4,9 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,5 +33,18 @@ public class MainActivity extends AppCompatActivity {
 
         stringAdapter = new StringAdapter(mContext, stringArrayList);
         stringViewer.setAdapter(stringAdapter);
+
+        String content;
+        FetchWeatherTask weatherTask = new FetchWeatherTask();
+        try {
+            String id = "1835847";
+            content = weatherTask.execute("http://api.openweathermap.org/data/2.5/forecast/daily?id="+ id +"&mode=json&units=metric&cnt=7&appid=5fd2f2cde90c1533efb95b19c048a528").get();
+            System.out.println(content);
+            Log.i("content", content);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
     }
 }
