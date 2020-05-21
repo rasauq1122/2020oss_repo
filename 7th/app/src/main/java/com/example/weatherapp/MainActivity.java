@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -43,8 +45,10 @@ public class MainActivity extends AppCompatActivity {
         switch(item.getItemId())
         {
             case R.id.refresh:
+                SharedPreferences spf = PreferenceManager.getDefaultSharedPreferences(this);
+                String id = spf.getString("city", "0");
                 toast.setText("Refreshed!");
-                refresh("1835847");
+                refresh(id);
                 break;
             case R.id.settings:
                 Intent intent = new Intent(getApplicationContext(), SettingActivity.class);
